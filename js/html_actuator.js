@@ -7,17 +7,17 @@ function HTMLActuator() {
 
   this.score = 0;
   this.images = {
-    2: './images/G7ZOt7x8NpI.jpg',
-    4: './images/0OGGjhWxWPE.jpg',
-    8: './images/p0G1dJhyqLE.jpg',
-    16: './images/aMhCMiPtjXY.jpg',
-    32: './images/aVK0MdkAqto.jpg',
-    64: './images/nIboJOCJNAU.jpg',
-    128: './images/1jDP6_oQeKA.jpg',
-    256: './images/MbR_tgAeSxc.jpg',
-    512: './images/0fDUCgEVWpY.jpg',
-    1024: './images/OjQAdqxgOrY.jpg',
-    2048: './images/LISWEkD_1Po.jpg'
+    2: 'http://lpenguin.github.io/2048/images/G7ZOt7x8NpI.jpg',
+    4: 'http://lpenguin.github.io/2048/images/0OGGjhWxWPE.jpg',
+    8: 'http://lpenguin.github.io/2048/images/p0G1dJhyqLE.jpg',
+    16: 'http://lpenguin.github.io/2048/images/aMhCMiPtjXY.jpg',
+    32: 'http://lpenguin.github.io/2048/images/aVK0MdkAqto.jpg',
+    64: 'http://lpenguin.github.io/2048/images/nIboJOCJNAU.jpg',
+    128: 'http://lpenguin.github.io/2048/images/1jDP6_oQeKA.jpg',
+    256: 'http://lpenguin.github.io/2048/images/MbR_tgAeSxc.jpg',
+    512: 'http://lpenguin.github.io/2048/images/0fDUCgEVWpY.jpg',
+    1024: 'http://lpenguin.github.io/2048/images/OjQAdqxgOrY.jpg',
+    2048: 'http://lpenguin.github.io/2048/images/LISWEkD_1Po.jpg'
   }
   this.exists = {}
 
@@ -86,7 +86,7 @@ HTMLActuator.prototype.addTile = function (tile) {
   else {
     if(self.exists[tile.value] == undefined){
       var ptile = document.getElementById('piska'+tile.value);
-      ptile.style = 'background-image: url("'+self.images[tile.value]+'"); ';
+      $(ptile).css('background-image', 'url('+self.images[tile.value]+')');
       var classList = ptile.className.split(' ')
       classList.push("piska-merged");
       ptile.setAttribute("class", classList.join(" "));
@@ -99,10 +99,8 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   inner.classList.add("tile-inner");
   // inner.textContent = tile.value;
-  inner.style = 'display: table; '+
-                'background-image: url("'+self.images[tile.value]+'"); '+
-                'background-size: cover; '+
-                'background-position: center center;'
+
+  // $(inner).css('background-image', 'url('+self.images[tile.value]+'); ')
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
@@ -125,6 +123,16 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   // Add the inner part of the tile to the wrapper
   wrapper.appendChild(inner);
+  // inner.style = 'display: table; '+
+  //               'background-image: url("'+self.images[tile.value]+'"); '+
+  //               'background-size: cover; '+
+  //               'background-position: center center;'
+  // inner.style.backgroundImage =' url('+self.images[tile.value]+'); ';
+
+  $(inner).css('color', '#fff');
+  $(inner).css('background-image', 'url('+self.images[tile.value]+')');
+  $(inner).css('background-size', 'cover');
+  $(inner).css('background-position', 'center center');
 
   // Put the tile on the board
   this.tileContainer.appendChild(wrapper);
