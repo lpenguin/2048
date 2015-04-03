@@ -6,6 +6,20 @@ function HTMLActuator() {
   this.sharingContainer = document.querySelector(".score-sharing");
 
   this.score = 0;
+  this.images = {
+    2: './images/G7ZOt7x8NpI.jpg',
+    4: './images/0OGGjhWxWPE.jpg',
+    8: './images/p0G1dJhyqLE.jpg',
+    16: './images/aMhCMiPtjXY.jpg',
+    32: './images/aVK0MdkAqto.jpg',
+    64: './images/nIboJOCJNAU.jpg',
+    128: './images/1jDP6_oQeKA.jpg',
+    256: './images/MbR_tgAeSxc.jpg',
+    512: './images/0fDUCgEVWpY.jpg',
+    1024: './images/OjQAdqxgOrY.jpg',
+    2048: './images/LISWEkD_1Po.jpg'
+  }
+  this.exists = {}
 }
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
@@ -63,11 +77,26 @@ HTMLActuator.prototype.addTile = function (tile) {
   var classes = ["tile", "tile-" + tile.value, positionClass];
 
   if (tile.value > 2048) classes.push("tile-super");
-
+  else {
+    if(self.exists[tile.value] == undefined){
+      var ptile = document.getElementById('piska'+tile.value);
+      ptile.style = 'background-image: url("'+self.images[tile.value]+'"); ';
+      var classList = ptile.className.split(' ')
+      classList.push("piska-merged");
+      ptile.setAttribute("class", classList.join(" "));
+      self.exists[tile.value] = 1;
+      ptile.textContent = tile.value;
+    }
+    
+  }
   this.applyClasses(wrapper, classes);
 
   inner.classList.add("tile-inner");
-  inner.textContent = tile.value;
+  // inner.textContent = tile.value;
+  inner.style = 'display: table; '+
+                'background-image: url("'+self.images[tile.value]+'"); '+
+                'background-size: cover; '+
+                'background-position: center center;'
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first

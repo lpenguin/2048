@@ -122,10 +122,10 @@ h1.title {
     animation-fill-mode: both; }
 
 .score-container:after {
-  content: "Score"; }
+  content: "Очки"; }
 
 .best-container:after {
-  content: "Best"; }
+  content: "Бест"; }
 
 p {
   margin-top: 0;
@@ -569,7 +569,7 @@ hr {
   display: inline-block;
   background: #8f7a66;
   border-radius: 3px;
-  padding: 0 20px;
+  padding: 0 15px;
   text-decoration: none;
   color: #f9f6f2;
   height: 40px;
