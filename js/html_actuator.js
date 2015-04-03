@@ -20,6 +20,12 @@ function HTMLActuator() {
     2048: './images/LISWEkD_1Po.jpg'
   }
   this.exists = {}
+
+  for(var i in this.images){
+    var src = this.images[i];
+    var img=new Image();
+    img.src=src;
+  }
 }
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
